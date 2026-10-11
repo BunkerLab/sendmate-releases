@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Descargar SendMate</title>
+  <meta name="description" content="Pásale archivos a tus amigos directamente, de ordenador a ordenador y sin límite de tamaño. Gratis para Windows y Mac.">
+  <meta property="og:title" content="SendMate: pásale archivos a tus amigos">
+  <meta property="og:description" content="De ordenador a ordenador, sin subirlos a la nube y sin límite de tamaño. Gratis para Windows y Mac.">
+  <meta property="og:image" content="https://bunkerlab.github.io/sendmate-releases/icon.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="icon.png">
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --gray-900: #2d2d2d;
+      --gray-800: #404040;
+      --gray-600: #737373;
+      --gray-300: #d4d4d4;
+      --gray-200: #e5e5e5;
+      --gray-100: #f5f5f5;
+      --white: #ffffff;
+      --green-bg: #ecfdf5;
+      --green-border: #a7f3d0;
+      --green-text: #065f46;
+      --amber-bg: #fffbeb;
+      --amber-border: #fcd34d;
+      --amber-text: #78350f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      color: var(--black);
+      line-height: 1.6;
+      background-color: var(--gray-100);
+      background-image: radial-gradient(var(--gray-300) 1px, transparent 1px);
+      background-size: 22px 22px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 16px 64px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .hero img {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 1.15;
+      margin: 20px 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: var(--gray-600);
+      margin: 0 auto;
+      max-width: 520px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      font-size: 20px;
+      margin: 0 0 12px;
+    }
+
+    .invite {
+      border-color: var(--green-border);
+      background: var(--green-bg);
+    }
+
+    .invite h2 { color: var(--green-text); }
+    .invite p { margin: 0 0 12px; color: var(--green-text); }
+    .invite-steps { color: var(--green-text); margin-bottom: 16px; }
+    .invite-steps li { margin-bottom: 4px; }
+
+    .code-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      background: var(--white);
+      border: 2px solid var(--green-border);
+      border-radius: 12px;
+      padding: 8px 16px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      color: var(--black);
+      font-family: inherit;
+    }
+
+    .btn:hover { background: var(--gray-100); }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .btn-primary:hover { background: var(--gray-900); }
+
+    .btn-big {
+      font-size: 18px;
+      padding: 16px 28px;
+    }
+
+    .download { text-align: center; }
+    .download .buttons { justify-content: center; }
+
+    .meta {
+      color: var(--gray-600);
+      font-size: 14px;
+      margin: 12px 0 0;
+    }
+
+    .meta a { color: inherit; }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      background: var(--gray-100);
+      border-radius: 10px;
+      padding: 4px;
+      width: max-content;
+      max-width: 100%;
+    }
+
+    .tab {
+      border: none;
+      background: transparent;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--gray-600);
+      cursor: pointer;
+    }
+
+    .tab[aria-selected="true"] {
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    ol.steps {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    ol.steps li { margin-bottom: 12px; }
+    ol.steps li:last-child { margin-bottom: 0; }
+
+    .note {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      color: var(--amber-text);
+      font-size: 14px;
+    }
+
+    code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-size: 0.92em;
+      word-break: break-all;
+    }
+
+    .why {
+      font-size: 15px;
+      color: var(--gray-800);
+    }
+
+    .why p { margin: 0 0 10px; }
+    .why p:last-child { margin-bottom: 0; }
+
+    footer {
+      text-align: center;
+      color: var(--gray-600);
+      font-size: 14px;
+    }
+
+    footer a { color: inherit; }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 520px) {
+      main { padding-top: 32px; }
+      h1 { font-size: 30px; }
+      .tagline { font-size: 16px; }
+      .card { padding: 20px 16px; }
+      .btn-big { width: 100%; }
+      .code { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <img src="icon.png" alt="">
+      <h1>SendMate</h1>
+      <p class="tagline">Pásale archivos a tus amigos directamente, de ordenador a ordenador, sin subirlos a la nube y sin límite de tamaño.</p>
+    </header>
+
+    <!-- Invitación (?code=ABC123&pub=...&name=@alias) -->
+    <section class="card invite" id="invite" hidden>
+      <h2 id="invite-title">Te han invitado a SendMate</h2>
+      <ol class="steps invite-steps">
+        <li>Descarga e instala SendMate (aquí abajo).</li>
+        <li>Vuelve a esta página y pulsa «Abrir invitación»: SendMate se abrirá con la solicitud de amistad lista para enviar.</li>
+      </ol>
+      <div class="buttons" id="open-invite-row">
+        <a class="btn btn-primary" id="open-invite" href="#">Abrir invitación en SendMate</a>
+      </div>
+      <div id="invite-code-block" hidden>
+        <p style="margin-top: 16px" id="invite-code-hint">¿No se abre? En SendMate pulsa «+ Agregar» y escribe este código:</p>
+        <div class="code-row">
+          <span class="code" id="invite-code"></span>
+          <button type="button" class="btn" id="copy-code">Copiar código</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card download">
+      <div id="download-desktop">
+        <div class="buttons">
+          <a class="btn btn-primary btn-big" id="primary-download" href="https://github.com/BunkerLab/sendmate-releases/releases/latest">Descargar SendMate</a>
+        </div>
+        <p class="meta" id="other-download"></p>
+      </div>
+      <div id="download-mobile" hidden>
+        <p>SendMate es para ordenador (Windows o Mac). Abre esta página en tu ordenador para descargarlo.</p>
+        <div class="buttons">
+          <button type="button" class="btn btn-primary" id="copy-page">Copiar el enlace</button>
+        </div>
+      </div>
+      <p class="meta"><span id="version-label">Gratis</span> · <a href="https://github.com/BunkerLab/sendmate-releases/releases">Todas las versiones</a></p>
+    </section>
+
+    <section class="card">
+      <h2>Cómo instalarlo</h2>
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab" role="tab" id="tab-windows" aria-controls="steps-windows" aria-selected="true">Windows</button>
+        <button type="button" class="tab" role="tab" id="tab-mac" aria-controls="steps-mac" aria-selected="false">Mac</button>
+      </div>
+
+      <div id="steps-windows" role="tabpanel">
+        <ol class="steps">
+          <li>Abre <strong>SendMate-Windows-Setup.exe</strong>, el archivo que acabas de descargar.</li>
+          <li>Si aparece <strong>«Windows protegió su PC»</strong>, pulsa <strong>«Más información»</strong> y después <strong>«Ejecutar de todas formas»</strong>.</li>
+          <li>Se instala solo, sin pedir permisos de administrador, y se abre. Elige tu nombre y listo.</li>
+          <li>Las versiones nuevas se instalan solas: SendMate te avisa cuando hay una lista.</li>
+        </ol>
+        <div class="note">
+          <strong>Windows 11 con «Control inteligente de aplicaciones»:</strong> si lo tienes activado, bloquea SendMate sin darte la opción de abrirlo. Puedes comprobarlo en Seguridad de Windows › Control de aplicaciones y navegador. Desactivarlo no tiene vuelta atrás sin reinstalar Windows, así que piénsalo antes.
+        </div>
+      </div>
+
+      <div id="steps-mac" role="tabpanel" hidden>
+        <ol class="steps">
+          <li>Abre <strong>SendMate-Mac.dmg</strong> y arrastra SendMate a la carpeta <strong>Aplicaciones</strong>.</li>
+          <li>Abre SendMate desde Aplicaciones. macOS dirá que no puede comprobar que esté libre de software malicioso: pulsa <strong>«Aceptar»</strong> (o «Listo»).</li>
+          <li>Ve a <strong>Ajustes del Sistema › Privacidad y seguridad</strong>, baja hasta el aviso sobre SendMate y pulsa <strong>«Abrir igualmente»</strong>. Confirma con tu contraseña o Touch ID. Solo hace falta la primera vez.</li>
+          <li>Cuando haya una versión nueva, SendMate te avisará: descarga el DMG otra vez y reemplaza la app en Aplicaciones. Tus amigos y ajustes se conservan.</li>
+        </ol>
+        <div class="note">
+          <strong>¿Dice que «está dañado»?</strong> Abre la app Terminal, pega <code>xattr -cr /Applications/SendMate.app</code>, pulsa Intro y vuelve a abrir SendMate. Necesitas macOS 12 o posterior.
+        </div>
+      </div>
+    </section>
+
+    <section class="card why">
+      <h2>¿Por qué salen esos avisos?</h2>
+      <p>SendMate es un proyecto personal y gratuito. Windows y macOS avisan de toda app que no tenga una firma de pago (cuesta desde unos 100 € al año), aunque sea segura.</p>
+      <p>Los archivos viajan cifrados directamente entre los dos ordenadores. Si no hay conexión directa entre las dos redes, pasan cifrados por un servidor de enlace, que no puede leerlos.</p>
+    </section>
+
+    <footer>
+      <p>SendMate · <a href="https://github.com/BunkerLab/sendmate-releases/releases">Versiones</a></p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var LATEST = 'https://github.com/BunkerLab/sendmate-releases/releases/latest/download/';
+      var DOWNLOADS = {
+        windows: { file: 'SendMate-Windows-Setup.exe', label: 'Descargar para Windows' },
+        mac: { file: 'SendMate-Mac.dmg', label: 'Descargar para Mac' }
+      };
+
+      function detectSystem() {
+        var ua = navigator.userAgent || '';
+        if (/Android|iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'mobile';
+        if (/Mac/i.test(ua)) return 'mac';
+        if (/Win/i.test(ua)) return 'windows';
+        return 'other';
+      }
+
+      function selectTab(system) {
+        ['windows', 'mac'].forEach(function (name) {
+          document.getElementById('tab-' + name).setAttribute('aria-selected', String(name === system));
+          document.getElementById('steps-' + name).hidden = name !== system;
+        });
+      }
+
+      function copy(text, button, doneLabel) {
+        var original = button.textContent;
+        navigator.clipboard.writeText(text).then(function () {
+          button.textContent = doneLabel;
+          setTimeout(function () { button.textContent = original; }, 2000);
+        });
+      }
+
+      // Botón de descarga según el sistema; el otro, como enlace
+      var system = detectSystem();
+      var primary = document.getElementById('primary-download');
+      var other = document.getElementById('other-download');
+      if (system === 'mobile') {
+        document.getElementById('download-desktop').hidden = true;
+        document.getElementById('download-mobile').hidden = false;
+        document.getElementById('copy-page').addEventListener('click', function (event) {
+          copy(location.href, event.currentTarget, '✓ Enlace copiado');
+        });
+      } else if (system === 'windows' || system === 'mac') {
+        var alternative = system === 'windows' ? 'mac' : 'windows';
+        primary.href = LATEST + DOWNLOADS[system].file;
+        primary.textContent = DOWNLOADS[system].label;
+        other.innerHTML = '¿Usas otro sistema? <a href="' + LATEST + DOWNLOADS[alternative].file + '">' + DOWNLOADS[alternative].label + '</a>';
+        selectTab(system);
+      } else {
+        primary.href = LATEST + DOWNLOADS.windows.file;
+        primary.textContent = DOWNLOADS.windows.label;
+        other.innerHTML = '<a href="' + LATEST + DOWNLOADS.mac.file + '">' + DOWNLOADS.mac.label + '</a>';
+      }
+      document.getElementById('tab-windows').addEventListener('click', function () { selectTab('windows'); });
+      document.getElementById('tab-mac').addEventListener('click', function () { selectTab('mac'); });
+
+      // Invitación: los mismos parámetros que el enlace sendmate://invite (ver renderer/lib/invite.js)
+      var params = new URLSearchParams(location.search);
+      var code = (params.get('code') || '').trim().toUpperCase();
+      var pub = (params.get('pub') || '').trim().replace(/ /g, '+');
+      var name = (params.get('name') || '').replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 40);
+      var validCode = /^[A-Z0-9]{6}$/.test(code);
+      var validPub = pub.length >= 40 && pub.length <= 200 && /^[A-Za-z0-9+/]+={0,2}$/.test(pub);
+      if (validCode || validPub) {
+        var invite = new URLSearchParams();
+        if (validCode) invite.set('code', code);
+        if (validPub) invite.set('pub', pub);
+        if (name) invite.set('name', name);
+        document.getElementById('invite').hidden = false;
+        document.getElementById('open-invite').href = 'sendmate://invite?' + invite.toString();
+        if (name) document.getElementById('invite-title').textContent = name + ' te invita a SendMate';
+        if (system === 'mobile') {
+          // En el móvil no hay app que abrir: el código, para cuando lo instale en el ordenador
+          document.querySelector('.invite-steps').hidden = true;
+          document.getElementById('open-invite-row').hidden = true;
+          document.getElementById('invite-code-hint').textContent = 'Instala SendMate en tu ordenador, pulsa «+ Agregar» y escribe este código:';
+        }
+        if (validCode) {
+          document.getElementById('invite-code-block').hidden = false;
+          document.getElementById('invite-code').textContent = code;
+          document.getElementById('copy-code').addEventListener('click', function (event) {
+            copy(code, event.currentTarget, '✓ Copiado');
+          });
+        }
+      }
+
+      // Versión publicada (si la API de GitHub no responde, se queda en «Gratis»)
+      fetch('https://api.github.com/repos/BunkerLab/sendmate-releases/releases/latest')
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (release) {
+          if (release && /^v?\d+\.\d+\.\d+$/.test(release.tag_name || '')) {
+            document.getElementById('version-label').textContent = 'Versión ' + release.tag_name.replace(/^v/, '') + ' · Gratis';
+          }
+        })
+        .catch(function () {});
+    })();
+  </script>
+</body>
+</html>
